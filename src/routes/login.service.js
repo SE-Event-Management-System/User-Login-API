@@ -5,7 +5,7 @@ const errors = require('../../errors/errors')
 const jwt = require('jsonwebtoken');
 const { jwtSecretKey, jwtExpiryTime } = require('../../config/config');
 
-async function signUpService(req, res, next){
+async function loginService(req, res, next){
     try{
         infoLogger(req.custom.id, req.body.requestId, "Checking if email exists");
         // Check if user exists
@@ -88,6 +88,6 @@ async function signUpService(req, res, next){
 }
 
 
-module.exports = signUpService
+module.exports = loginService
 
 
