@@ -1,6 +1,6 @@
 const {infoLogger, errorLogger} = require('../../logger/logger');
 const User = require('../models/user');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const errors = require('../../errors/errors')
 const jwt = require('jsonwebtoken');
 const { jwtSecretKey, jwtExpiryTime } = require('../../config/config');
@@ -14,7 +14,7 @@ async function loginService(req, res, next){
             infoLogger(req.custom.id, req.body.requestId, "User email doesn't exist");
             return res.status(401).json({
                 statusCode: 1,
-                timestamp: Date.now,
+                timestamp: Date.now(),
                 requestId: req.body.requestId,
                 info: {
                     code: errors['001'].code,
@@ -31,7 +31,7 @@ async function loginService(req, res, next){
                 infoLogger(req.custom.id, req.body.requestId, "User password did not match");
                 return res.status(401).json({
                     statusCode: 1,
-                    timestamp: Date.now,
+                    timestamp: Date.now(),
                     requestId: req.body.requestId,
                     info: {
                         code: errors['001'].code,
@@ -55,7 +55,7 @@ async function loginService(req, res, next){
 
             return res.status(200).json({
                 statusCode: 0,
-                timestamp: Date.now,
+                timestamp: Date.now(),
                 requestId: req.body.requestId,
                 data: {
                     token
@@ -73,7 +73,7 @@ async function loginService(req, res, next){
         errorLogger(req.custom.id, req.body.requestId, `Unexpected error while searching by email id | ${err.message}`, err)
         return res.status(500).json({
             statusCode: 1,
-            timestamp: Date.now,
+            timestamp: Date.now(),
             requestId: req.body.requestId,
             info: {
                 code: errors['006'].code,
