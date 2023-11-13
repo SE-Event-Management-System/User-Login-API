@@ -7,6 +7,15 @@ const mongoose = require('mongoose');
 const {v4} = require('uuid')
 const routeVersioning = require('./src/index');
 const errors = require('./errors/errors');
+const cors = require('cors');
+
+const corsOptions = {
+    origin: '*', // Allow requests from your React app
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Include cookies and other credentials
+  };
+  
+app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use((req, res, next) => {
