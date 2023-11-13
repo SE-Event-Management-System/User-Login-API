@@ -44,6 +44,7 @@ async function loginService(req, res, next){
             infoLogger(req.custom.id, req.body.requestId, "Signing a JWT token");
             // Signing a token
             const token = jwt.sign({
+                            user: userList[0].firstName,
                             email: userList[0].email,
                             userId: userList[0]._id
                         },
