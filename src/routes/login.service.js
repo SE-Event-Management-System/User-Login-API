@@ -47,7 +47,8 @@ async function loginService(req, res, next){
                             user: userList[0].firstName,
                             email: userList[0].email,
                             userId: userList[0]._id,
-                            isAdmin: userList[0].isAdmin
+                            isAdmin: userList[0].isAdmin,
+                            organizerName: userList[0].organizerName,
                         },
                         jwtSecretKey,
                         {
